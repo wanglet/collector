@@ -1,11 +1,27 @@
 - name: cluster-proportional-autoscaler
+  version: v1.8.5
   imageGroups:
-  - name: cluster-proportional-autoscaler
-    output:
+  - output:
       type: docker
     images:
     - source: 172.18.60.199:5000/cpa/cluster-proportional-autoscaler-arm64:1.8.5
     - source: 172.18.60.199:5000/cpa/cluster-proportional-autoscaler-amd64:1.8.5
-  - name: httpd
-    images:
+  - images:
     - source: httpd:2.4
+
+- name: argocd
+  version: v2.7.6
+  imageGroups:
+  - images:
+    - source: 172.18.60.199:5000/dexidp/dex:v2.36.0
+    - source: 172.18.60.199:5000/argoproj/argocd:v2.7.6
+    - source: 172.18.60.199:5000/redis/7.0.11-alpine
+  binaries:
+  - url: https://github.com/argoproj/argo-cd/releases/download/v2.7.6/argocd-linux-amd64
+    sha256sum: 4f2f56548ad042cc168108263fd0e92bdccc0f61957e4df32dabf3bc53ef4b87
+    arch: amd64
+    filename: argocd-linux-amd64
+  - url: https://github.com/argoproj/argo-cd/releases/download/v2.7.6/argocd-linux-arm64
+    sha256sum: b4fa9bac5dfe7e3677ab2ec2d369443a158d8e3265984964cd568a6057f8906b
+    arch: arm64
+    filename: argocd-linux-arm64
